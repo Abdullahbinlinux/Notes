@@ -1,1 +1,8 @@
+<<<<<<< HEAD
 This a test note which I created in my first project :) 
+=======
+A test note
+tag: work
+this is the combined note content
+
+>>>>>>> 4e82a0cf97b8c5eff1b64de695cbc8440909c121
