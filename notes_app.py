@@ -32,16 +32,32 @@ def open_note_editor():
     name = filedialog.askopenfilename(title="Select note", filetypes=[("Text Files", "*.txt")])
     if not name:
         return
+
     editor_window = tk.Toplevel()
     editor_window.title(f"Editing {os.path.basename(name)}")
     editor_window.geometry("500x400")
 
-    text_area = scrolledtext.ScrolledText(editor_window, wrap=tk.WORD)
-    text_area.pack(expand=True, fill='both')
+    # Frame to hold text area and save button
+    frame = tk.Frame(editor_window)
+    frame.pack(expand=True, fill='both')
+
+    text_area = scrolledtext.ScrolledText(frame, wrap=tk.WORD)
+    text_area.pack(expand=True, fill='both', padx=5, pady=5)
 
     # Load current content
     with open(name, "r") as f:
         text_area.insert(tk.END, f.read())
+
+    # Save function
+    def save_changes():
+        with open(name, "w") as f:
+            f.write(text_area.get("1.0", tk.END).rstrip())
+        messagebox.showinfo("Saved", f"{os.path.basename(name)} saved!")
+        push_to_git(f"Edited note {os.path.basename(name)}")
+
+    # Save button at the bottom
+    save_button = tk.Button(editor_window, text="Save Changes", command=save_changes)
+    save_button.pack(pady=5)
 
     def save_changes():
         with open(name, "w") as f:
