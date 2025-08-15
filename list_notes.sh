@@ -1,4 +1,4 @@
 #!/bin/bash
-echo "you likkle pussy"
+echo "Another test note"
 ls ~/notes
 
