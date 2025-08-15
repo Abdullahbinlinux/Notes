@@ -1,3 +1,5 @@
+import tkinter as tk
+from tkinter import simpledialog, messagebox, filedialog
 import subprocess
 import os
 def push_to_git(message="Update notes"):
@@ -122,4 +124,16 @@ def menu():
             print("Invalid option.")
 if __name__ == "__main__":
     menu()
+def launch_gui():
+    root = tk.Tk()
+    root.title("Notes App")
+    root.geometry("400x400")  # width x height
+
+    tk.Label(root, text="Welcome to Notes App", font=("Arial", 16)).pack(pady=10)
+
+    root.mainloop()
+
+if __name__ == "__main__":
+    launch_gui()
+
 
