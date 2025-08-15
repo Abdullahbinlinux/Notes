@@ -1,0 +1,2 @@
+Tag: work
+This a test note to auto-push work to GitHub
