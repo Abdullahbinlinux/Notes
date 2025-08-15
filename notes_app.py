@@ -2,12 +2,22 @@ import subprocess
 import os
 def push_to_git(message="Update notes"):
     try:
+        # Step 1: Pull remote changes first (merge)
+        subprocess.run(["git", "pull", "origin", "main", "--allow-unrelated-histories", "--no-rebase"], check=True)
+        
+        # Step 2: Stage all changes
         subprocess.run(["git", "add", "."], check=True)
+        
+        # Step 3: Commit changes
         subprocess.run(["git", "commit", "-m", message], check=True)
+        
+        # Step 4: Push to remote
         subprocess.run(["git", "push", "origin", "main"], check=True)
+        
         print("Changes pushed to GitHub!")
     except subprocess.CalledProcessError:
-        print("Git push failed. Make sure your repo is set up and you are connected to the internet.")
+        print("Git operation failed. Make sure your repo is set up and you are connected to the internet.")
+
 
 def show_notes():
     files = [f for f in os.listdir() if f.endswith(".txt")]

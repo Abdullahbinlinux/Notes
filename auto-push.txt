@@ -1,2 +1,1 @@
-Tag: work
-This a test note to auto-push work to GitHub
+This is also a test note to see the changes i make go into GitHub automatically
